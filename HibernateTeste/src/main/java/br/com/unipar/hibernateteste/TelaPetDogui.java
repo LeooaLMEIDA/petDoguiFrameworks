@@ -375,8 +375,6 @@ public class TelaPetDogui extends javax.swing.JFrame {
         AgendamentoDAO dao = new AgendamentoDAO();
         
         dao.save(agendamento);
-        
         atualizaLista();
-        
     }
 }
