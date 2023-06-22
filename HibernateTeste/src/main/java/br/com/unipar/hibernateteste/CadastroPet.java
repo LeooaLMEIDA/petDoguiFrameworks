@@ -3,6 +3,8 @@ package br.com.unipar.hibernateteste;
 
 import br.com.unipar.hibernateteste.model.Pet;
 import br.com.unipar.hibernateteste.model.dao.PetDAO;
+import br.com.unipar.hibernateteste.model.enums.GeneroEnum;
+import br.com.unipar.hibernateteste.model.enums.TamanhoEnum;
 import br.com.unipar.hibernateteste.tablemodel.PetTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,6 @@ public class CadastroPet extends javax.swing.JFrame {
         initComponents();
         atualizaSexo();
         atualizaTamanho();
-        gravarPet();
     }
 
     private void atualizaSexo(){
@@ -48,6 +49,11 @@ public class CadastroPet extends javax.swing.JFrame {
         dao.save(pet);
     }
     
+    private void limpaCampos(){
+        jTextFieldNome.setText("");
+        jTextAreaObservacoes.setText("");
+        jTextFieldDono.setText("");
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +74,9 @@ public class CadastroPet extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
+        jButtonBuscarPet = new javax.swing.JButton();
+        jTextFieldDono = new javax.swing.JTextField();
+        jLabelName1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,7 +104,7 @@ public class CadastroPet extends javax.swing.JFrame {
 
         jLabelSize.setText("Tamanho:");
 
-        jLabelName.setText("Nome:");
+        jLabelName.setText("Dono:");
 
         jLabel1.setText("Sexo:");
 
@@ -108,6 +117,22 @@ public class CadastroPet extends javax.swing.JFrame {
             }
         });
 
+        jButtonBuscarPet.setText("+");
+        jButtonBuscarPet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarPetActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDono.setEditable(false);
+        jTextFieldDono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDonoActionPerformed(evt);
+            }
+        });
+
+        jLabelName1.setText("Nome:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,38 +144,53 @@ public class CadastroPet extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabelName))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jLabelSize)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jComboBoxTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabelSize))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabelName)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jTextFieldDono)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(jButtonBuscarPet, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGap(35, 35, 35)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(291, 291, 291)
                         .addComponent(jButtonSalvar)))
                 .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabelName1)
+                    .addContainerGap(634, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelName)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelSize)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelSize)
+                    .addComponent(jLabelName))
                 .addGap(5, 5, 5)
-                .addComponent(jComboBoxTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscarPet)
+                    .addComponent(jTextFieldDono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,6 +198,11 @@ public class CadastroPet extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jButtonSalvar)
                 .addContainerGap(316, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(16, 16, 16)
+                    .addComponent(jLabelName1)
+                    .addContainerGap(680, Short.MAX_VALUE)))
         );
 
         pack();
@@ -176,8 +221,27 @@ public class CadastroPet extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxSexoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        // TODO add your handling code here:
+        pet.setNome(jTextFieldNome.getText());
+        pet.setObs(jTextAreaObservacoes.getText());
+        pet.setSexo(GeneroEnum.valueOf(jComboBoxSexo.getSelectedItem().toString()));
+        pet.setTamanho(TamanhoEnum.valueOf(jComboBoxTamanho.getSelectedItem().toString()));
+        
+        System.out.println(pet.toString());
+        gravarPet();
+        
+        limpaCampos();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonBuscarPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPetActionPerformed
+        ConsultaDono dialogForm = new ConsultaDono(this, true);
+        dialogForm.setVisible(true);
+        jTextFieldDono.setText(dialogForm.getDonoSelecionado().getNome());
+        pet.setCliente(dialogForm.getDonoSelecionado());
+    }//GEN-LAST:event_jButtonBuscarPetActionPerformed
+
+    private void jTextFieldDonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,15 +279,18 @@ public class CadastroPet extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscarPet;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxSexo;
     private javax.swing.JComboBox<String> jComboBoxTamanho;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelName1;
     private javax.swing.JLabel jLabelSize;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaObservacoes;
+    private javax.swing.JTextField jTextFieldDono;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }

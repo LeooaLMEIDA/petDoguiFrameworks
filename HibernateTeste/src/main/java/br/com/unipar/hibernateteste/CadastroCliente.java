@@ -51,19 +51,15 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void gravarCliente() {
         ClienteDAO dao = new ClienteDAO();
             
-        if (jComboBoxStatus.getSelectedItem().toString().equals("")) {
-            JOptionPane.showMessageDialog(this, "É necessário informar o Status do Cliente");
-        }else{
-            dao.save(cliente);
-            atualizaLista();
-        }
-        
+        dao.save(cliente);
+        atualizaLista();
     }
     
     private void gravarEndereco() {
         EnderecoDAO dao = new EnderecoDAO();
         
-        dao.save(endereco);
+        dao.save(endereco);        
+        limpaCampos();
     }
     
     private void atualizaCidade() {
@@ -74,6 +70,16 @@ public class CadastroCliente extends javax.swing.JFrame {
         }
     }
     
+    private void limpaCampos(){
+        jTextFieldNome.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldCPF.setText("");
+        
+        jTextFieldBairro.setText("");
+        jTextFieldCep.setText("");
+        jTextFieldRua.setText("");
+        jTextFieldNumero.setText("");
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.

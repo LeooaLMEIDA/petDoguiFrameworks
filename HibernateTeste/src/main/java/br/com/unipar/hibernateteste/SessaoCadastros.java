@@ -91,7 +91,8 @@ public class SessaoCadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastroClienteActionPerformed
 
     private void jButtonCadastroPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroPetActionPerformed
-        // TODO add your handling code here:
+        CadastroPet tela = new CadastroPet();
+        tela.setVisible(true);
     }//GEN-LAST:event_jButtonCadastroPetActionPerformed
 
     /**

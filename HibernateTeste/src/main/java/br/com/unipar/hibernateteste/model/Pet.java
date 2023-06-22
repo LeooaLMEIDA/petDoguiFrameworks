@@ -4,6 +4,7 @@ import br.com.unipar.hibernateteste.model.enums.GeneroEnum;
 import br.com.unipar.hibernateteste.model.enums.TamanhoEnum;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,11 +28,11 @@ public class Pet {
     private Cliente cliente;
 
     @Column(length = 30)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TamanhoEnum tamanho;
 
     @Column(length = 30)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private GeneroEnum sexo;
 
     @Column(length = 120)
