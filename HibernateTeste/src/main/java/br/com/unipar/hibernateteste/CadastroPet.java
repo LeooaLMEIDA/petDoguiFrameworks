@@ -1,18 +1,21 @@
 
 package br.com.unipar.hibernateteste;
 
+import br.com.unipar.hibernateteste.model.Pet;
+import br.com.unipar.hibernateteste.model.dao.PetDAO;
+import br.com.unipar.hibernateteste.tablemodel.PetTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CadastroPet extends javax.swing.JFrame {
+    
+    private Pet pet = new Pet();
 
-    /**
-     * Creates new form CadastroPet
-     */
     public CadastroPet() {
         initComponents();
         atualizaSexo();
         atualizaTamanho();
+        gravarPet();
     }
 
     private void atualizaSexo(){
@@ -40,6 +43,11 @@ public class CadastroPet extends javax.swing.JFrame {
         } 
     }
     
+    private void gravarPet() {
+        PetDAO dao = new PetDAO();
+        dao.save(pet);
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +61,7 @@ public class CadastroPet extends javax.swing.JFrame {
         jTextFieldNome = new javax.swing.JTextField();
         jComboBoxSexo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaObservacoes = new javax.swing.JTextArea();
         jComboBoxTamanho = new javax.swing.JComboBox<>();
         jLabelSize = new javax.swing.JLabel();
         jLabelName = new javax.swing.JLabel();
@@ -75,9 +83,9 @@ public class CadastroPet extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaObservacoes.setColumns(20);
+        jTextAreaObservacoes.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaObservacoes);
 
         jComboBoxTamanho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,7 +223,7 @@ public class CadastroPet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelSize;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaObservacoes;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,3 +1,4 @@
+br\com\unipar\hibernateteste\CadastroPet$5.class
 br\com\unipar\hibernateteste\Menu$2.class
 br\com\unipar\hibernateteste\TelaPetDogui$2.class
 br\com\unipar\hibernateteste\TelaPetDogui$5.class
@@ -9,6 +10,7 @@ br\com\unipar\hibernateteste\model\dao\GenericDAO.class
 br\com\unipar\hibernateteste\tablemodel\ClienteTableModel.class
 br\com\unipar\hibernateteste\CadastroPet$2.class
 br\com\unipar\hibernateteste\CadastroPet.class
+br\com\unipar\hibernateteste\CadastroCliente$7.class
 br\com\unipar\hibernateteste\Menu.class
 br\com\unipar\hibernateteste\model\dao\AgendamentoDAO.class
 br\com\unipar\hibernateteste\model\Servico.class
@@ -24,6 +26,7 @@ br\com\unipar\hibernateteste\TelaPetDogui$6.class
 br\com\unipar\hibernateteste\model\util\EntityManagerUtil.class
 br\com\unipar\hibernateteste\CadastroCliente$1.class
 br\com\unipar\hibernateteste\ConsultaPet.class
+br\com\unipar\hibernateteste\CadastroCliente$8.class
 br\com\unipar\hibernateteste\model\util\PetDoguiLog.class
 br\com\unipar\hibernateteste\TelaPetDogui$3.class
 br\com\unipar\hibernateteste\model\dao\EstadoDAO.class
