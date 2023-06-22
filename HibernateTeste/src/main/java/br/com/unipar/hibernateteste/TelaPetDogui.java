@@ -7,6 +7,7 @@ import br.com.unipar.hibernateteste.model.Servico;
 import br.com.unipar.hibernateteste.model.dao.AgendamentoDAO;
 import br.com.unipar.hibernateteste.model.dao.ServicoDAO;
 import br.com.unipar.hibernateteste.model.util.EntityManagerUtil;
+import br.com.unipar.hibernateteste.model.util.PetDoguiLog;
 import br.com.unipar.hibernateteste.tablemodel.AgendamentoTableModel;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -284,6 +285,7 @@ public class TelaPetDogui extends javax.swing.JFrame {
             agendamento.setDataHora(date);
             
             gravarAgendamento();
+            PetDoguiLog.infoGeral("Gravou Atendimento");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "A correta formatação da data é dd/MM/yyyy e hora HH:mm:ss"

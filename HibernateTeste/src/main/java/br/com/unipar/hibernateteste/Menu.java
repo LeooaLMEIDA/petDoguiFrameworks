@@ -4,6 +4,8 @@
  */
 package br.com.unipar.hibernateteste;
 
+import br.com.unipar.hibernateteste.model.util.PetDoguiLog;
+
 /**
  *
  * @author leoal
@@ -72,9 +74,12 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrosActionPerformed
+        PetDoguiLog.infoGeral("Abriu a Tela Sessão Cadastros");
+        
         SessaoCadastros dialogForm = new SessaoCadastros();
         dialogForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         dialogForm.setVisible(true);
+        
     }//GEN-LAST:event_jButtonCadastrosActionPerformed
 
     /**

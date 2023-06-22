@@ -5,9 +5,12 @@ import br.com.unipar.hibernateteste.model.Pet;
 import br.com.unipar.hibernateteste.model.dao.PetDAO;
 import br.com.unipar.hibernateteste.model.enums.GeneroEnum;
 import br.com.unipar.hibernateteste.model.enums.TamanhoEnum;
+import br.com.unipar.hibernateteste.model.util.PetDoguiLog;
 import br.com.unipar.hibernateteste.tablemodel.PetTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroPet extends javax.swing.JFrame {
     
@@ -44,9 +47,15 @@ public class CadastroPet extends javax.swing.JFrame {
         } 
     }
     
-    private void gravarPet() {
-        PetDAO dao = new PetDAO();
-        dao.save(pet);
+    private void gravarPet() throws Exception {
+        try {
+            validaPet();
+            PetDAO dao = new PetDAO();
+            dao.save(pet);
+        } catch (Exception e) {
+            PetDoguiLog.erroGeral(e);
+            throw new Exception(e.getMessage());
+        }
     }
     
     private void limpaCampos(){
@@ -54,6 +63,25 @@ public class CadastroPet extends javax.swing.JFrame {
         jTextAreaObservacoes.setText("");
         jTextFieldDono.setText("");
     }
+    
+    private void validaPet() throws Exception {
+        if(pet.getNome() == null){
+            throw new Exception("É necessário informar o nome do pet");
+        }
+        
+        if(pet.getSexo() == null){
+            throw new Exception("É necessário informar o sexo do pet");
+        }
+        
+        if(pet.getTamanho() == null){
+            throw new Exception("É necessário informar o tamanho do pet");
+        }
+        
+        if(pet.getCliente() == null){
+            throw new Exception("É necessário informar o cliente do pet");
+        }
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,8 +254,12 @@ public class CadastroPet extends javax.swing.JFrame {
         pet.setSexo(GeneroEnum.valueOf(jComboBoxSexo.getSelectedItem().toString()));
         pet.setTamanho(TamanhoEnum.valueOf(jComboBoxTamanho.getSelectedItem().toString()));
         
-        System.out.println(pet.toString());
-        gravarPet();
+        try { 
+            gravarPet();
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroPet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PetDoguiLog.infoGeral("Gravou o Pet");
         
         limpaCampos();
     }//GEN-LAST:event_jButtonSalvarActionPerformed

@@ -7,10 +7,11 @@ import br.com.unipar.hibernateteste.model.Endereco;
 import br.com.unipar.hibernateteste.model.dao.CidadeDAO;
 import br.com.unipar.hibernateteste.model.dao.ClienteDAO;
 import br.com.unipar.hibernateteste.model.dao.EnderecoDAO;
+import br.com.unipar.hibernateteste.model.util.PetDoguiLog;
 import br.com.unipar.hibernateteste.tablemodel.ClienteTableModel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,7 +65,7 @@ public class CadastroCliente extends javax.swing.JFrame {
     
     private void atualizaCidade() {
         CidadeDAO daoCidade = new CidadeDAO();
-        List<Cidade> listaCidade = daoCidade.findAll();
+        ArrayList<Cidade> listaCidade = (ArrayList<Cidade>) daoCidade.findAll();
         for (Cidade cidade : listaCidade){
             jComboBoxCidades.addItem(cidade.getNome());
         }
@@ -325,6 +326,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         cliente.setCpf(jTextFieldCPF.getText());
         
         gravarCliente();
+        PetDoguiLog.infoGeral("Gravou o Cliente");
         
         endereco.setBairro(jTextFieldBairro.getText());
         endereco.setCep(jTextFieldCep.getText());

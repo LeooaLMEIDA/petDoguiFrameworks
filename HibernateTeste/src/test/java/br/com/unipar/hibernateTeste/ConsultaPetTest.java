@@ -1,7 +1,11 @@
 
 package br.com.unipar.hibernateTeste;
 
-import br.com.unipar.hibernateteste.model.Agendamento;
+import br.com.unipar.hibernateteste.model.Cidade;
+import br.com.unipar.hibernateteste.model.dao.CidadeDAO;
+import br.com.unipar.hibernateteste.model.util.EntityManagerUtil;
+import java.util.ArrayList;
+import java.util.Random;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -9,13 +13,22 @@ import static org.junit.Assert.*;
 public class ConsultaPetTest {
     
    @Test
-   public void testSoma(){
-       int a = 2 ;
-       int b = 3;
+   public void testRetornoCidade(){
+        EntityManagerUtil.getEntityManagerFactory();
        
-       int resultado = Agendamento.soma(a,b);
-       
-       assertEquals(5, resultado);
+        CidadeDAO daoCidade = new CidadeDAO();
+        ArrayList<Cidade> listaCidade = (ArrayList<Cidade>) daoCidade.findAll();
+        
+        Random random = new Random();
+        
+        int numeroAleatorio = random.nextInt(listaCidade.size()-1);
+        
+        System.out.println(numeroAleatorio);
+        
+        Cidade testCidade = listaCidade.get(numeroAleatorio);
+        
+        Cidade cidadeRetorno = daoCidade.findByNome(testCidade.getNome());
+        assertEquals(testCidade, cidadeRetorno);
    }
 
 }

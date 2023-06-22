@@ -4,6 +4,8 @@
  */
 package br.com.unipar.hibernateteste;
 
+import br.com.unipar.hibernateteste.model.util.PetDoguiLog;
+
 /**
  *
  * @author leoal
@@ -81,18 +83,21 @@ public class SessaoCadastros extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastroAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroAtendimentoActionPerformed
+        PetDoguiLog.infoGeral("Abriu a Tela Cadastro Atendimento");
         TelaPetDogui dialogForm = new TelaPetDogui();
         dialogForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         dialogForm.setVisible(true);
     }//GEN-LAST:event_jButtonCadastroAtendimentoActionPerformed
 
     private void jButtonCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroClienteActionPerformed
+        PetDoguiLog.infoGeral("Abriu a Tela Cadastro Cliente");
         CadastroCliente tela = new CadastroCliente();
         tela.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonCadastroClienteActionPerformed
 
     private void jButtonCadastroPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroPetActionPerformed
+        PetDoguiLog.infoGeral("Abriu a Tela Cadastro Pet");
         CadastroPet tela = new CadastroPet();
         tela.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tela.setVisible(true);
