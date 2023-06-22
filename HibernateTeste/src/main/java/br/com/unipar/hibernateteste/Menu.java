@@ -73,6 +73,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButtonCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrosActionPerformed
         SessaoCadastros dialogForm = new SessaoCadastros();
+        dialogForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         dialogForm.setVisible(true);
     }//GEN-LAST:event_jButtonCadastrosActionPerformed
 

@@ -31,6 +31,25 @@
 				</Delete>
 			</DefaultRolloverStrategy>
 		</RollingFile>
+                
+                <RollingFile name="persistenciaLogger" 
+                             fileName="${basePath}/persistencia.log" 
+                             filePattern="${basePath}/persistencia-%d{yyyy-MM-dd}.log">
+                    <PatternLayout>
+                        <pattern>[%-5level] %d{dd/MM/yyyy HH:mm:ss} - %msg%n</pattern>
+                    </PatternLayout>
+                    <Policies>
+                        <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                        <SizeBasedTriggeringPolicy size="10MB" />
+                    </Policies>
+                    <!-- Max 10 files will be created every day -->
+                    <DefaultRolloverStrategy max="10">
+                        <Delete basePath="${basePathr}" maxDepth="10">
+                            <!-- Delete all files older than 30 days -->
+                            <IfLastModified age="30d" />
+                        </Delete>
+                    </DefaultRolloverStrategy>
+                </RollingFile>
 	</Appenders>
 	<Loggers>
                 <Logger name="br.com.unipar.hibernateteste" additivity="false" level="info">

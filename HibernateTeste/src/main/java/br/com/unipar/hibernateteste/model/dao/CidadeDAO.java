@@ -10,7 +10,7 @@ public class CidadeDAO extends GenericDAO<Cidade> {
     }
     
     public Cidade findByNome(String nome) {
-        String jpql = "from Cidade where nome = :nome";
+        String jpql = "from Cidade where nome = :nome order by nome asc";
         TypedQuery<Cidade> query = em.createQuery(jpql,Cidade.class).setParameter("nome", nome);
         return query.getSingleResult();
     }

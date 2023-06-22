@@ -82,16 +82,19 @@ public class SessaoCadastros extends javax.swing.JFrame {
 
     private void jButtonCadastroAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroAtendimentoActionPerformed
         TelaPetDogui dialogForm = new TelaPetDogui();
+        dialogForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         dialogForm.setVisible(true);
     }//GEN-LAST:event_jButtonCadastroAtendimentoActionPerformed
 
     private void jButtonCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroClienteActionPerformed
         CadastroCliente tela = new CadastroCliente();
+        tela.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonCadastroClienteActionPerformed
 
     private void jButtonCadastroPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastroPetActionPerformed
         CadastroPet tela = new CadastroPet();
+        tela.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         tela.setVisible(true);
     }//GEN-LAST:event_jButtonCadastroPetActionPerformed
 
